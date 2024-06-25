@@ -42,7 +42,6 @@ jobs:
 
     code-coverage:
       name: Code Coverage
-      continue-on-error: true
       id: code-coverage
       runs-on: ubuntu-latest
       steps:
@@ -61,7 +60,7 @@ jobs:
         run: npm run code-coverage
 
       - name: Code-Coverage-Result
-        if: always()
+        if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
           name: Code-Coverage-Result
