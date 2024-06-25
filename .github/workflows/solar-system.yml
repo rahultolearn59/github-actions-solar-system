@@ -42,7 +42,6 @@ jobs:
 
     code-coverage:
       name: Code Coverage
-      id: code-coverage
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Repository
