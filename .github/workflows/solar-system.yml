@@ -33,7 +33,7 @@ jobs:
           run: npm test
           
         - name: Archive Test Result
-          if: always()
+          if:  failure() || success()
           uses: actions/upload-artifact@v3
           with:
             name: Mocha-Test-Result
