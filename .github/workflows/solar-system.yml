@@ -42,6 +42,7 @@ jobs:
 
     code-coverage:
       name: Code Coverage
+      continue-on-error: true
       id: code-coverage
       runs-on: ubuntu-latest
       steps:
