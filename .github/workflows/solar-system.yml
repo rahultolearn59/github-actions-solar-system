@@ -15,7 +15,6 @@ env:
     
 jobs:
     unit-testing:
-        continue-on-error: true
         name: Unit Testing
         runs-on: ubuntu-latest
         steps:
@@ -35,7 +34,7 @@ jobs:
           run: npm test
           
         - name: Archive Test Result
-          continue-on-error: true
+          if: success() || failure()
           uses: actions/upload-artifact@v3
           with:
             name: Mocha-Test-Result
