@@ -60,6 +60,7 @@ jobs:
         run: npm run code-coverage
 
       - name: Code-Coverage-Result
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: Code-Coverage-Result
