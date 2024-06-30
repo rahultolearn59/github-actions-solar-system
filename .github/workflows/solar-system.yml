@@ -32,3 +32,41 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
+
+    code-coverage:
+        name: Code Coverage
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Setup NodeJS Version
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+    
+        - name: Install Dependencies
+          run: npm install
+
+        - name: Code Coverage
+          run: npm run code-coverage
+
+    dev-deploy:
+        needs: docker
+        runs-on: ubuntu-latest
+        environment:
+          name: development
+        steps:
+        - uses: actions/checkout@v4
+        - uses: azure/setup-kubectl@v3
+          with:
+            version: v1.26.0
+        - uses: azure/k8s-set-context@v3
+          with:
+            method: kubeconfig
+            kubeconfig: '${{ secrets.KUBECONFIG }}'
+        - run: kubectl version --short -o yaml
+
+
+          
+        
