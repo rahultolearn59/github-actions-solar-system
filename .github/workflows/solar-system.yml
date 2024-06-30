@@ -75,6 +75,7 @@ jobs:
 
     docker:
       name: Docker
+      permissions: write
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Repository
