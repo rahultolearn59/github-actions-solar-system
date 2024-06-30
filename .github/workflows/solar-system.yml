@@ -114,7 +114,7 @@ jobs:
           version: 'v1.26.0'
 
       - name: Setup KUBECTL Context
-        uses: azure/k8s-set-context
+        uses: azure/k8s-set-context@v4
         with:
           method: kubeconfig
           kubeconfig: '${{ secrets.KUBECONFIG }}'
