@@ -106,10 +106,10 @@ jobs:
         name: development
       steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Install KUBECTL
-        uses: azure/setup-kubectl
+        uses: azure/setup-kubectl@v3
         with:
           version: 'v1.26.0'
 
