@@ -19,6 +19,12 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
+
+        - name: Cache NPM dependencies
+          uses: actions/cache@v3
+          with:
+            path: ~/.npm
+            key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
     
         - name: Install Dependencies
           run: npm install
@@ -32,6 +38,8 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
+
+
 
     code-coverage:
         name: Code Coverage
@@ -51,21 +59,6 @@ jobs:
         - name: Code Coverage
           run: npm run code-coverage
 
-    dev-deploy:
-        needs: docker
-        runs-on: ubuntu-latest
-        environment:
-          name: development
-        steps:
-        - uses: actions/checkout@v4
-        - uses: azure/setup-kubectl@v3
-          with:
-            version: v1.26.0
-        - uses: azure/k8s-set-context@v3
-          with:
-            method: kubeconfig
-            kubeconfig: '${{ secrets.KUBECONFIG }}'
-        - run: kubectl version --short -o yaml
 
 
           
